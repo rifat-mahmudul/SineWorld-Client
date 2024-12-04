@@ -1,0 +1,62 @@
+    [
+        {
+        "_id": 1,
+        "MoviePoster": "https://i.ibb.co.com/z401fZz/img1.jpg",
+        "MovieTitle": "The Galactic Odyssey",
+        "Genre": ["Sci-Fi", "Adventure"],
+        "Duration": 142,
+        "ReleaseYear": 2023,
+        "rating": 4.5,
+        "Summary": "A team of explorers ventures into deep space to discover a new planet, but they encounter an ancient alien force threatening the galaxy."
+        },
+        {
+        "_id": 2,
+        "MoviePoster": "https://i.ibb.co.com/N3T4rnk/img2.jpg",
+        "MovieTitle": "Mystery Manor",
+        "Genre": ["Mystery", "Thriller", "Drama"],
+        "Duration": 120,
+        "ReleaseYear": 2021,
+        "rating": 2.5,
+        "Summary": "When a wealthy recluse dies under suspicious circumstances, a detective must unravel the secrets of an isolated mansion."
+        },
+        {
+        "_id": 3,
+        "MoviePoster": "https://i.ibb.co.com/fqzkD9p/img3.jpg",
+        "MovieTitle": "Laughing Out Loud",
+        "Genre": ["Comedy", "Romance"],
+        "Duration": 98,
+        "ReleaseYear": 2022,
+        "rating": 4.3,
+        "Summary": "A quirky romance blossoms between two stand-up comedians as they navigate their careers and insecurities."
+        },
+        {
+        "_id": 4,
+        "MoviePoster": "https://i.ibb.co.com/6rq8yB4/img4.jpg",
+        "MovieTitle": "The Last Kingdom",
+        "Genre": ["Action", "Drama", "History"],
+        "Duration": 154,
+        "ReleaseYear": 2020,
+        "rating": 3.75,
+        "Summary": "Set in medieval times, a young warrior rises to lead his people against an invading empire."
+        },
+        {
+        "_id": 5,
+        "MoviePoster": "https://i.ibb.co.com/ws1Mzp0/img5.jpg",
+        "MovieTitle": "Ocean Secrets",
+        "Genre": ["Adventure", "Fantasy"],
+        "Duration": 128,
+        "ReleaseYear": 2019,
+        "rating": 4.5,
+        "Summary": "A marine biologist discovers a hidden underwater world that holds the key to saving the planet."
+        },
+        {
+        "_id": 6,
+        "MoviePoster": "https://i.ibb.co.com/s5cXGF3/three-idiots.jpg",
+        "MovieTitle": "The Enchanted Forest",
+        "Genre": ["Fantasy", "Family"],
+        "Duration": 110,
+        "ReleaseYear": 2022,
+        "rating": 4.1,
+        "Summary": "A young girl stumbles into a magical forest and befriends mystical creatures, embarking on a journey to save their home from destruction."
+        }
+    ]
