@@ -84,8 +84,8 @@ const Nav = () => {
         <NavLink 
         onClick={() => setOpen(false)} 
         className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
-        to="/our-shop">
-            Ticket
+        to="/upcoming-show">
+            Upcoming Show
         </NavLink>
 
         {
@@ -95,7 +95,7 @@ const Nav = () => {
             <div className="relative group h-12 w-12 rounded-full border border-indigo-500 cursor-pointer">
                 <img className="w-full h-full rounded-full" src={user?.photoURL} alt="" />
 
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-green-800 text-white text-xs rounded py-1 px-2">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-orange-700 text-white text-xs rounded py-1 px-2">
                     <p>{user?.displayName}</p>
                 </div>
             </div>

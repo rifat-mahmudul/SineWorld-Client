@@ -6,11 +6,11 @@ import { IoMdEye } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
 
-    const {getEmail} = useAuth();
     const {logInUser, googleSignIn} = useAuth();
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [error, setError] = useState(null);
@@ -67,7 +67,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
-            navigate('/');
+            navigate(from);
         })
         .catch(error => {
             Swal.fire({
@@ -83,30 +83,20 @@ const Login = () => {
         setIsPasswordVisible((prev) => !prev);
     };
 
-    const handleForgetPassword = e => {
-        e.preventDefault();
-        const email = emailRef.current.value;
-        if (email) {
-            getEmail(email);
-            navigate('/forgetPassword');
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops!",
-                text: "Please provide a valid email address.",
-            });
-        }
-    }
-
     return (
         <div className="max-w-[90%] xl:max-w-[1100px] mx-auto flex flex-col justify-center gap-8 sm:flex-row items-center mb-16 mt-14 lg:h-[100vh]">
+
+            <Helmet>
+                <title>Login - SineWorld</title>
+            </Helmet>
+
             <div>
                 <img className="h-[300px] lg:w-[400px] rounded-lg" src={loginImage} alt="" />
             </div>
 
             <div className="lg:w-1/3 bg-gray-100 shadow-md rounded p-5">
                 <form className="" onSubmit={handleLogIn}>
-                    <h1 className="font-bold text-3xl mb-4 font-Rancho text-center">Log in</h1>
+                    <h1 className="font-bold text-3xl mb-4 text-center">Log in</h1>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                             Email
@@ -147,7 +137,6 @@ const Login = () => {
                     <div className="text-right text-blue-400">
                         
                             <button
-                                onClick={handleForgetPassword}
                                 className=""
                                 href="#"
                             >
