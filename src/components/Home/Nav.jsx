@@ -97,7 +97,7 @@ const Nav = () => {
     </>
 
     return (
-        <header className="w-full bg-[#00000094]">
+        <header className="w-full fixed z-10 bg-[#00000094]">
             <div className="flex justify-between items-center py-3 max-w-[90%] xl:max-w-[1200px] mx-auto text-white px-4 backdrop-blur-lg">
                 <div>
                     <Link to="/">
