@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Navigate, useLocation } from "react-router";
 import useAuth from "../Hooks/useAuth"
+import FadeLoader from "react-spinners/FadeLoader";
 
 const PrivateRoutes = ({children}) => {
 
@@ -8,7 +9,9 @@ const PrivateRoutes = ({children}) => {
     const location = useLocation();
 
     if(loading) {
-        return <p>Loading.....</p>
+        return <div className="flex justify-center items-center h-[100vh] text-yellow-600">
+        <FadeLoader color="#ca8a04" />
+    </div>
     }
 
     if(user){

@@ -4,7 +4,6 @@ import useMovies from "../Hooks/useMovies"
 const AllMovies = () => {
 
     const [movies] = useMovies();
-    console.log(movies)
 
     return (
         <section>
