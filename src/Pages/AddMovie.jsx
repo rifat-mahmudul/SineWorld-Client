@@ -93,7 +93,13 @@ const AddMovie = () => {
                                 <label className="font-bold">Genre</label><br></br>
                                 <select 
                                 className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg"
-                                {...register('Genre')}
+                                {...register('Genre', {
+                                    required : "Select Genre is required",
+                                    minLength : {
+                                        value : 1,
+                                        message : "Select Genre is required"
+                                    }
+                                })}
                                 >
                                     <option value="">Select Genre</option>
                                     <option value="Comedy">Comedy</option>
@@ -102,6 +108,9 @@ const AddMovie = () => {
                                     <option value="Drama">Drama</option>
                                     <option value="Thriller">Thriller</option>
                                 </select>
+                                {errors.Genre && (
+                                <p className="text-red-600 mt-1">{errors.Genre.message}</p>
+                                )}
                             </div>
 
                             <div className="sm:w-[49%] mb-4 sm:mb-0">
@@ -130,7 +139,13 @@ const AddMovie = () => {
                                 <label className="font-bold">Release Year</label><br></br>
                                 <select 
                                 className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg"
-                                {...register('ReleaseYear')}
+                                {...register('ReleaseYear',{
+                                    required : "Select Genre is required",
+                                    minLength : {
+                                        value : 1,
+                                        message : "Select Genre is required"
+                                    }
+                                })}
                                 >
                                     <option value="">Select Year</option>
                                     <option value="2024">2024</option>
@@ -139,6 +154,9 @@ const AddMovie = () => {
                                     <option value="2021">2021</option>
                                     <option value="2020">2020</option>
                                 </select>
+                                {errors.ReleaseYear && (
+                                <p className="text-red-600 mt-1">{errors.ReleaseYear.message}</p>
+                                )}
                             </div>
 
                             <div className="sm:w-[49%] mb-4 sm:mb-0">
