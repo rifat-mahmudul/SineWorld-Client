@@ -4,6 +4,7 @@ import img2 from '../assets/stay-with-us.png'
 import Title from '../components/Shared/Title'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Helmet } from 'react-helmet-async';
 
 const UpcomingShow = () => {
 
@@ -13,6 +14,10 @@ const UpcomingShow = () => {
 
     return (
         <section>
+
+            <Helmet>
+                <title>Upcoming Show - SineWorld</title>
+            </Helmet>
             
             <div className='mt-16 mb-10'>
                 <img className='xl:w-[1200px] w-[90%] h-[150px] mx-auto rounded-lg' src={img} alt="" />
