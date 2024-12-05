@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router"
+import { Link, useNavigate, useParams } from "react-router"
 import { Rating } from "@smastrom/react-rating";
 import { MdDeleteForever } from "react-icons/md";
 import { GrFavorite } from "react-icons/gr";
@@ -84,10 +84,12 @@ const MovieDetails = () => {
                         <p>Add to Favorite</p>
                     </button>
 
-                    <button className="py-3 px-5 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 flex gap-1 items-center">
-                        <FaPencil size={24} />
-                        <p>Update Movie</p>
-                    </button>
+                    <Link to={`/update-movie/${details?._id}`}>
+                        <button className="py-3 px-5 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 flex gap-1 items-center">
+                            <FaPencil size={24} />
+                            <p>Update Movie</p>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </section>

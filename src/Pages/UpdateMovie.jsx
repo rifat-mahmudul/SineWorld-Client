@@ -1,19 +1,38 @@
 import { Helmet } from "react-helmet-async"
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Swal from 'sweetalert2'
-import useAuth from "../Hooks/useAuth";
+import { useEffect, useState } from "react";
 
-const AddMovie = () => {
+const UpdateMovie = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
+        defaultValues: {
+            MoviePoster: '',
+            MovieTitle: '',
+            Genre: '',
+            Duration: '',
+            ReleaseYear: '',
+            rating: '',
+            Summary: ''
+        }
+    });
     const navigate = useNavigate();
-    const {user} = useAuth();
+    const {id} = useParams();
+    const [movie, setMovie] = useState();
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/movies/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            setMovie(data);
+            Object.keys(data).forEach(key => setValue(key, data[key]));
+        })
+    }, [id, setValue])
 
     const onSubmit = data => {
-        data.email = user?.email;
-        fetch('http://localhost:5000/movies', {
-            method : 'POST',
+        fetch(`http://localhost:5000/movies/${id}`, {
+            method : 'PATCH',
             headers : {
                 "content-type" : "application/json"
             },
@@ -33,16 +52,17 @@ const AddMovie = () => {
         })
     }
 
+
     return (
         <section className="mt-24 mb-16">
 
             <Helmet>
-                <title>Add Movie - SineWorld</title>
+                <title>Update Movie - SineWorld</title>
             </Helmet>
 
             <div className="max-w-[90%] xl:max-w-[1000px] mx-auto bg-gray-100 p-8 rounded-lg">
 
-                <h1 className="text-center font-semibold text-3xl sm:text-4xl font-Rancho text-orange-600 mb-8">Add Movie</h1>
+                <h1 className="text-center font-semibold text-3xl sm:text-4xl font-Rancho text-orange-600 mb-8">Update Movie</h1>
 
                 <div>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,6 +74,7 @@ const AddMovie = () => {
                             <input
                                 className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg"
                                 type="text"
+                                defaultValue={movie?.MoviePoster}
                                 placeholder="Enter Movie Poster Link"
                                 {...register('MoviePoster', {
                                     required: "Movie Poster link is required",
@@ -73,6 +94,7 @@ const AddMovie = () => {
                                 <label className="font-bold">Movie Title</label><br></br>
                                 <input 
                                 className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg" type="text" 
+                                defaultValue={movie?.MovieTitle}
                                 placeholder="Enter Movie Title"
                                 {...register('MovieTitle', {
                                     required : "Movie Title is required",
@@ -93,7 +115,10 @@ const AddMovie = () => {
                                 <label className="font-bold">Genre</label><br></br>
                                 <select 
                                 className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg"
-                                {...register('Genre')}
+                                {...register('Genre', {
+                                    required: "Genre is required"
+                                })}
+                                defaultValue={movie?.Genre || ''}
                                 >
                                     <option value="">Select Genre</option>
                                     <option value="Comedy">Comedy</option>
@@ -109,6 +134,7 @@ const AddMovie = () => {
                                 <input 
                                 className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg" type="number" 
                                 placeholder="Enter Duration"
+                                defaultValue={movie?.Duration}
                                 {...register('Duration',{
                                     required : "Duration is required",
                                     min : {
@@ -130,7 +156,10 @@ const AddMovie = () => {
                                 <label className="font-bold">Release Year</label><br></br>
                                 <select 
                                 className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg"
-                                {...register('ReleaseYear')}
+                                {...register('ReleaseYear', {
+                                    required: "Release Year is required"
+                                })}
+                                defaultValue={movie?.ReleaseYear || ''}
                                 >
                                     <option value="">Select Year</option>
                                     <option value="2024">2024</option>
@@ -145,6 +174,7 @@ const AddMovie = () => {
                                 <label className="font-bold">Rating</label><br></br>
                                 <input 
                                 className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg" type="number" 
+                                defaultValue={movie?.rating}
                                 placeholder="Enter Rating"
                                 {...register('rating', {
                                     required : "rating is required"
@@ -160,6 +190,7 @@ const AddMovie = () => {
                             <label className="font-bold">Summary</label><br></br>
                             <textarea 
                             className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg h-[100px]" type="text"
+                            defaultValue={movie?.Summary}
                             placeholder="Write Summery About Your Movie"
                             {...register('Summary',{
                                 required : "summary is required",
@@ -176,7 +207,7 @@ const AddMovie = () => {
                         </div>
 
                         <div>
-                            <button className="bg-gradient-to-r from-orange-500 to-orange-800 p-3 text-center text-white font-Rancho rounded-lg w-full text-2xl mt-5" type="submit">Add Movie</button>
+                            <button className="bg-gradient-to-r from-orange-500 to-orange-800 p-3 text-center text-white font-Rancho rounded-lg w-full text-2xl mt-5" type="submit">Update Movie</button>
                         </div>
 
                     </form>
@@ -187,4 +218,4 @@ const AddMovie = () => {
     )
 }
 
-export default AddMovie
+export default UpdateMovie
