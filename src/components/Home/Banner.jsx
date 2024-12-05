@@ -8,7 +8,7 @@ import img3 from '../../assets/Home/img3.jpg';
 import img4 from '../../assets/Home/img4.jpg';
 import img6 from '../../assets/Home/img5.jpg';
 import img5 from '../../assets/Home/three-idiots.jpg';
-import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import './compo.css'
 
 
@@ -25,7 +25,7 @@ const Banner = () => {
             delay: 3000,
             disableOnInteraction: false,
         }}
-        modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
+        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
         className="mySwiper mx-auto mb-16"
         >
             <SwiperSlide>

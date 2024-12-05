@@ -1,28 +1,18 @@
 import { useParams } from "react-router"
-import { useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import { MdDeleteForever } from "react-icons/md";
 import { GrFavorite } from "react-icons/gr";
 import { FaPencil } from "react-icons/fa6";
 import { Helmet } from "react-helmet-async";
+import useMovies from "../Hooks/useMovies";
 
 const MovieDetails = () => {
 
-    const [movies, setMovies] = useState([]);
-
-    useEffect(() => {
-        fetch('../Data.json')
-        .then(res => res.json())
-        .then(data => {
-            setMovies(data);
-        })
-    }, [])
+    const [movies] = useMovies();
 
     const {id} = useParams();
     console.log(id)
     const details = movies.find(d => d._id == id);
-
-    // const { MoviePoster, MovieTitle, Genre, Duration, ReleaseYear, rating, _id } = movie;
 
     return (
         <section className="max-w-[90%] xl:max-w-[850px] mx-auto bg-gray-200 p-5 rounded-xl mt-24 mb-16">
