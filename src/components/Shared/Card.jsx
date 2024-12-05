@@ -31,7 +31,7 @@ const Card = ({ movie }) => {
                 <div className="flex justify-between items-center pt-3">
                     <h3>
                         <span className="font-semibold">Genre : </span>
-                        <span className="text-gray-500">{Genre[0]}</span>
+                        <span className="text-gray-500">{Genre}</span>
                     </h3>
 
                     <h3>

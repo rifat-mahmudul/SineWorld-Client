@@ -1,12 +1,17 @@
 import { Helmet } from "react-helmet-async"
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import Swal from 'sweetalert2'
+import useAuth from "../Hooks/useAuth";
 
 const AddMovie = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
+    const {user} = useAuth();
 
     const onSubmit = data => {
-        console.log(data)
+        data.email = user?.email;
         fetch('http://localhost:5000/movies', {
             method : 'post',
             headers : {
@@ -16,7 +21,15 @@ const AddMovie = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            if(data.acknowledged){
+                Swal.fire({
+                    icon: "success",
+                    title: "Coffee Saved Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/all-movies')
+            }
         })
     }
 

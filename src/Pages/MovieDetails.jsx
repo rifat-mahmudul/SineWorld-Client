@@ -34,7 +34,7 @@ const MovieDetails = () => {
                         <span className="font-bold">Release Year</span> : {details?.ReleaseYear}
                     </p>
                     <p className="mt-3">
-                        <span className="font-bold">Genre</span> : {details?.Genre[0]}
+                        <span className="font-bold">Genre</span> : {details?.Genre}
                     </p>
                     <h3 className='flex gap-3 items-center mt-3'>
                             <span className="font-semibold">Rating : </span>
