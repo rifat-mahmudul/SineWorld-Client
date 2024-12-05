@@ -1,18 +1,49 @@
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { Rating } from "@smastrom/react-rating";
 import { MdDeleteForever } from "react-icons/md";
 import { GrFavorite } from "react-icons/gr";
 import { FaPencil } from "react-icons/fa6";
 import { Helmet } from "react-helmet-async";
 import useMovies from "../Hooks/useMovies";
+import Swal from "sweetalert2";
 
 const MovieDetails = () => {
 
     const [movies] = useMovies();
+    const navigate = useNavigate();
 
     const {id} = useParams();
-    console.log(id)
     const details = movies.find(d => d._id == id);
+
+    const handleDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/movies/${details?._id}`, {
+                    method: 'DELETE'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your movie has been deleted.",
+                            icon: "success"
+                        });
+                        navigate('/all-movies')
+                    }
+                })
+                .catch(error => console.error("Error deleting movie:", error));
+            }
+        });
+    }
 
     return (
         <section className="max-w-[90%] xl:max-w-[850px] mx-auto bg-gray-200 p-5 rounded-xl mt-24 mb-16">
@@ -43,7 +74,7 @@ const MovieDetails = () => {
                 </div>
 
                 <div className="mt-5 flex flex-col sm:flex-row gap-5">
-                    <button className="py-3 px-5 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 flex gap-1 items-center">
+                    <button onClick={handleDelete} className="py-3 px-5 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 flex gap-1 items-center">
                         <MdDeleteForever size={24} /> 
                         <p>Delete movie</p>
                     </button>
