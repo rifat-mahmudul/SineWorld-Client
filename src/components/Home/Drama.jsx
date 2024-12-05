@@ -12,7 +12,7 @@ const Drama = () => {
     return (
         <section>
 
-            <div className='mb-16'>
+            <div className='mb-20'>
                 <Title title="Enjoy Latest Bangla Drama" heading="Latest Bangla Drama"></Title>
 
                 <div className='xl:w-[1200px] w-[90%] mx-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8'>
