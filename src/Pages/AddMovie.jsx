@@ -7,6 +7,17 @@ const AddMovie = () => {
 
     const onSubmit = data => {
         console.log(data)
+        fetch('http://localhost:5000/movies', {
+            method : 'post',
+            headers : {
+                "content-type" : "application/json"
+            },
+            body : JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
     }
 
     return (

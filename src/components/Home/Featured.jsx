@@ -14,7 +14,7 @@ const Featured = () => {
             <div 
             className="pt-4 max-w-[90%] xl:max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center justify-between gap-8">
                 {
-                    movies.map(movie => <Card key={movie._id} movie={movie}></Card>)
+                    movies.slice(0,6).map(movie => <Card key={movie._id} movie={movie}></Card>)
                 }
             </div>
             
