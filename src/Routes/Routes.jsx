@@ -7,6 +7,7 @@ import Error from "../Pages/Error";
 import AllMovies from "../Pages/AllMovies";
 import MovieDetails from "../Pages/MovieDetails";
 import PrivateRoutes from "./PrivateRoutes";
+import UpcomingShow from "../Pages/UpcomingShow";
 
 const AppRoutes = () => {
     return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
                     path={`/Details/:id`} 
                     element={<PrivateRoutes><MovieDetails></MovieDetails></PrivateRoutes>}>
                 </Route>
+                <Route path="upcoming-show" element={<UpcomingShow></UpcomingShow>}></Route>
             </Route>
 
             <Route path="*" element={<Error></Error>}></Route>
