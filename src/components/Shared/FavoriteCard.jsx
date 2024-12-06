@@ -5,14 +5,47 @@ import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
 import { useEffect } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
+import Swal from 'sweetalert2';
 
-const FavoriteCard = ({movie}) => {
+const FavoriteCard = ({movie, movies, setMovies}) => {
 
     useEffect(() => {
         AOS.init();
     }, []);
 
-    const { MoviePoster, MovieTitle, Genre, Duration, ReleaseYear, rating } = movie;
+    const { MoviePoster, MovieTitle, Genre, Duration, ReleaseYear, rating, _id } = movie;
+
+    const remainingData = movies.filter(item => item._id !== _id);
+
+    const handleDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/favorite/${_id}`, {
+                    method: 'DELETE'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your movie has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                    setMovies(remainingData)
+                })
+                .catch(error => console.error("Error deleting movie:", error));
+            }
+        });
+    }
 
     return (
         <div data-aos="zoom-in-up" className="shadow-xl border border-gray-400 rounded-lg hover:scale-105 transition">
@@ -47,9 +80,9 @@ const FavoriteCard = ({movie}) => {
                         <Rating style={{ maxWidth: 120 }} value={rating} readOnly/>
                     </h3>
 
-                    <button className="py-3 px-2 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 flex gap-1 items-center">
+                    <button onClick={handleDelete} className="py-3 px-2 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 flex gap-1 items-center">
                         <MdDeleteForever size={24} /> 
-                        <p>Delete movie</p>
+                        <p>Delete Favorite</p>
                     </button>
                 </div>
 
