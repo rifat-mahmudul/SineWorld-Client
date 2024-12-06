@@ -22,7 +22,7 @@ const UpdateMovie = () => {
     const [movie, setMovie] = useState();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/movies/${id}`)
+        fetch(`https://assignment-10-server-delta-sand.vercel.app/movies/${id}`)
         .then(res => res.json())
         .then(data => {
             setMovie(data);
@@ -31,7 +31,7 @@ const UpdateMovie = () => {
     }, [id, setValue])
 
     const onSubmit = data => {
-        fetch(`http://localhost:5000/movies/${id}`, {
+        fetch(`https://assignment-10-server-delta-sand.vercel.app/movies/${id}`, {
             method : 'PATCH',
             headers : {
                 "content-type" : "application/json"

@@ -10,7 +10,7 @@ const AllMovies = () => {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        fetch(`http://localhost:5000/movies?search=${search}`)
+        fetch(`https://assignment-10-server-delta-sand.vercel.app/movies?search=${search}`)
         .then(res => res.json())
         .then(data => {
             setMovieData(data);

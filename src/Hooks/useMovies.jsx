@@ -5,7 +5,7 @@ const useMovies = () => {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/movies')
+        fetch('https://assignment-10-server-delta-sand.vercel.app/movies')
         .then(res => res.json())
         .then(data => {
             setMovies(data);

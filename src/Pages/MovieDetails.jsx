@@ -28,7 +28,7 @@ const MovieDetails = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/movies/${details?._id}`, {
+                fetch(`https://assignment-10-server-delta-sand.vercel.app/movies/${details?._id}`, {
                     method: 'DELETE'
                 })
                 .then(res => res.json())
@@ -61,7 +61,7 @@ const MovieDetails = () => {
             email : user?.email,
         }
 
-        fetch('http://localhost:5000/favorite', {
+        fetch('https://assignment-10-server-delta-sand.vercel.app/favorite', {
             method : 'POST',
             headers : {
                 "content-type" : "application/json"

@@ -19,7 +19,7 @@
 
 The goal of **SineWorld** is to be the go-to platform for discovering, managing, and enjoying movies in a fun, user-centric way! 🎬✨
 
-🌐 **Live Site URL**: [SineWorld](https://your-live-site-url.com)
+🌐 **Live Site URL**: [SineWorld](https://assignment-10-9b7eb.web.app)
 
 ---
 

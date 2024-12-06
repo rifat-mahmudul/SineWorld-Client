@@ -12,7 +12,7 @@ const AddMovie = () => {
 
     const onSubmit = data => {
         data.email = user?.email;
-        fetch('http://localhost:5000/movies', {
+        fetch('https://assignment-10-server-delta-sand.vercel.app/movies', {
             method : 'POST',
             headers : {
                 "content-type" : "application/json"

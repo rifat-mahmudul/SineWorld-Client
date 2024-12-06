@@ -9,7 +9,7 @@ const MyFavorite = () => {
     const {user} = useAuth();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/favorite/${user?.email}`)
+        fetch(`https://assignment-10-server-delta-sand.vercel.app/favorite/${user?.email}`)
         .then(res => res.json())
         .then(data => {
             setMovies(data);
