@@ -77,7 +77,7 @@ const Nav = () => {
         <NavLink 
         onClick={() => setOpen(false)} 
         className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
-        to="/my-favorites">
+        to="/my-favorite">
             My Favorites
         </NavLink>
 

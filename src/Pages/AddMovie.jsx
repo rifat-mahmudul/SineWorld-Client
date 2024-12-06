@@ -24,7 +24,7 @@ const AddMovie = () => {
             if(data.acknowledged){
                 Swal.fire({
                     icon: "success",
-                    title: "Coffee Saved Successfully",
+                    title: "Movie Saved Successfully",
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -103,10 +103,12 @@ const AddMovie = () => {
                                 >
                                     <option value="">Select Genre</option>
                                     <option value="Comedy">Comedy</option>
+                                    <option value="Romantic">Romantic</option>
                                     <option value="Action">Action</option>
                                     <option value="Horror">Horror</option>
                                     <option value="Drama">Drama</option>
                                     <option value="Thriller">Thriller</option>
+                                    <option value="Motivational">Motivational</option>
                                 </select>
                                 {errors.Genre && (
                                 <p className="text-red-600 mt-1">{errors.Genre.message}</p>
@@ -163,9 +165,13 @@ const AddMovie = () => {
                                 <label className="font-bold">Rating</label><br></br>
                                 <input 
                                 className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg" type="number" 
-                                placeholder="Enter Rating"
+                                placeholder="Enter Rating ( maximum value 5 )"
                                 {...register('rating', {
-                                    required : "rating is required"
+                                    required : "rating is required",
+                                    max : {
+                                        value : 5,
+                                        message : "Rating Can not be grater than 5"
+                                    }
                                 })}
                                 />
                                 {errors.rating && (

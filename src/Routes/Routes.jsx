@@ -10,6 +10,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import UpcomingShow from "../Pages/UpcomingShow";
 import AddMovie from "../Pages/AddMovie";
 import UpdateMovie from "../Pages/UpdateMovie";
+import MyFavorite from "../Pages/MyFavorite";
 
 const AppRoutes = () => {
     return (
@@ -26,6 +27,7 @@ const AppRoutes = () => {
                 <Route path="upcoming-show" element={<UpcomingShow></UpcomingShow>}></Route>
                 <Route path="add-movie" element={<PrivateRoutes><AddMovie></AddMovie></PrivateRoutes>}></Route>
                 <Route path="update-movie/:id" element={<PrivateRoutes><UpdateMovie></UpdateMovie></PrivateRoutes>}></Route>
+                <Route path="/my-favorite" element={<PrivateRoutes><MyFavorite></MyFavorite></PrivateRoutes>}></Route>
             </Route>
 
             <Route path="*" element={<Error></Error>}></Route>

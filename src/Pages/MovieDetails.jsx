@@ -6,11 +6,13 @@ import { FaPencil } from "react-icons/fa6";
 import { Helmet } from "react-helmet-async";
 import useMovies from "../Hooks/useMovies";
 import Swal from "sweetalert2";
+import useAuth from "../Hooks/useAuth";
 
 const MovieDetails = () => {
 
     const [movies] = useMovies();
     const navigate = useNavigate();
+    const {user} = useAuth();
 
     const {id} = useParams();
     const details = movies.find(d => d._id == id);
@@ -43,6 +45,41 @@ const MovieDetails = () => {
                 .catch(error => console.error("Error deleting movie:", error));
             }
         });
+    }
+
+
+    const handleFavorite = () => {
+
+        const data = {
+            MoviePoster : details?.MoviePoster,
+            MovieTitle : details?.MovieTitle,
+            Genre : details?.Genre,
+            Duration : details?.Duration,
+            ReleaseYear : details?.ReleaseYear,
+            rating : details?.rating,
+            Summary : details?.Summary,
+            email : user?.email,
+        }
+
+        fetch('http://localhost:5000/favorite', {
+            method : 'POST',
+            headers : {
+                "content-type" : "application/json"
+            },
+            body : JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.acknowledged){
+                Swal.fire({
+                    icon: "success",
+                    title: "Successfully Added My Favorite",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/my-favorite')
+            }
+        })
     }
 
     return (
@@ -79,7 +116,7 @@ const MovieDetails = () => {
                         <p>Delete movie</p>
                     </button>
 
-                    <button className="py-3 px-5 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 flex gap-1 items-center">
+                    <button onClick={handleFavorite} className="py-3 px-5 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 flex gap-1 items-center">
                         <GrFavorite size={24} /> 
                         <p>Add to Favorite</p>
                     </button>
