@@ -3,15 +3,24 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import Swal from 'sweetalert2'
 import useAuth from "../Hooks/useAuth";
+import { useState } from "react";
+import { Rating } from '@smastrom/react-rating';
 
 const AddMovie = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const {user} = useAuth();
+    const [rating, setRating] = useState(0)
+
+    const handleRating = (rate) => {
+        setRating(rate)
+    }
+
 
     const onSubmit = data => {
         data.email = user?.email;
+        data.rating = rating;
         fetch('https://assignment-10-server-delta-sand.vercel.app/movies', {
             method : 'POST',
             headers : {
@@ -161,22 +170,18 @@ const AddMovie = () => {
                                 )}
                             </div>
 
-                            <div className="sm:w-[49%] mb-4 sm:mb-0">
-                                <label className="font-bold">Rating</label><br></br>
-                                <input 
-                                className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg" type="number" 
-                                placeholder="Enter Rating ( maximum value 5 )"
-                                {...register('rating', {
-                                    required : "rating is required",
-                                    max : {
-                                        value : 5,
-                                        message : "Rating Can not be grater than 5"
-                                    }
-                                })}
-                                />
-                                {errors.rating && (
-                                <p className="text-red-600 mt-1">{errors.rating.message}</p>
-                                )}
+                            <div className="sm:w-[49%] mb-4 sm:mb-0 flex items-center gap-2">
+                                <label className="font-bold">Rating : </label><br></br>
+                                <div>
+                                    <Rating
+                                        value={rating} 
+                                        onChange={handleRating}
+                                        style={{ maxWidth: 120 }}
+                                        fillColor="gold"
+                                        allowHover={true}
+                                        isRequired={true}
+                                    />
+                                </div>
                             </div>
                         </div>
 

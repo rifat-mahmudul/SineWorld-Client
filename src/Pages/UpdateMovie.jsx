@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import Swal from 'sweetalert2'
 import { useEffect, useState } from "react";
+import { Rating } from '@smastrom/react-rating';
 
 const UpdateMovie = () => {
 
@@ -20,6 +21,11 @@ const UpdateMovie = () => {
     const navigate = useNavigate();
     const {id} = useParams();
     const [movie, setMovie] = useState();
+    const [rating, setRating] = useState(0)
+
+    const handleRating = (rate) => {
+        setRating(rate)
+    }
 
     useEffect(() => {
         fetch(`https://assignment-10-server-delta-sand.vercel.app/movies/${id}`)
@@ -27,10 +33,14 @@ const UpdateMovie = () => {
         .then(data => {
             setMovie(data);
             Object.keys(data).forEach(key => setValue(key, data[key]));
+            if (data.rating) {
+                setRating(data.rating);
+            }
         })
     }, [id, setValue])
 
     const onSubmit = data => {
+        data.rating = rating;
         fetch(`https://assignment-10-server-delta-sand.vercel.app/movies/${id}`, {
             method : 'PATCH',
             headers : {
@@ -172,23 +182,18 @@ const UpdateMovie = () => {
                                 </select>
                             </div>
 
-                            <div className="sm:w-[49%] mb-4 sm:mb-0">
-                                <label className="font-bold">Rating</label><br></br>
-                                <input 
-                                className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg" type="number" 
-                                defaultValue={movie?.rating}
-                                placeholder="Enter Rating ( maximum value 5 )"
-                                {...register('rating', {
-                                    required : "rating is required",
-                                    max : {
-                                        value : 5,
-                                        message : "Rating Can not be grater than 5"
-                                    }
-                                })}
-                                />
-                                {errors.rating && (
-                                <p className="text-red-600 mt-1">{errors.rating.message}</p>
-                                )}
+                            <div className="sm:w-[49%] mb-4 sm:mb-0 flex items-center gap-2">
+                                <label className="font-bold">Rating : </label><br></br>
+                                <div>
+                                    <Rating
+                                        value={rating} 
+                                        onChange={handleRating}
+                                        style={{ maxWidth: 120 }}
+                                        fillColor="gold"
+                                        allowHover={true}
+                                        isRequired={true}
+                                    />
+                                </div>
                             </div>
                         </div>
 
