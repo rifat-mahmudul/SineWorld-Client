@@ -12,6 +12,7 @@ const AddMovie = () => {
     const navigate = useNavigate();
     const {user} = useAuth();
     const [rating, setRating] = useState(0)
+    const [error, setError] = useState('');
 
     const handleRating = (rate) => {
         setRating(rate)
@@ -21,6 +22,12 @@ const AddMovie = () => {
     const onSubmit = data => {
         data.email = user?.email;
         data.rating = rating;
+
+        if (rating === 0) {
+            setError('Please select a rating before submitting the movie.');
+            return;
+        }
+        
         fetch('https://assignment-10-server-delta-sand.vercel.app/movies', {
             method : 'POST',
             headers : {
@@ -170,18 +177,24 @@ const AddMovie = () => {
                                 )}
                             </div>
 
-                            <div className="sm:w-[49%] mb-4 sm:mb-0 flex items-center gap-2">
-                                <label className="font-bold">Rating : </label><br></br>
-                                <div>
-                                    <Rating
-                                        value={rating} 
-                                        onChange={handleRating}
-                                        style={{ maxWidth: 120 }}
-                                        fillColor="gold"
-                                        allowHover={true}
-                                        isRequired={true}
-                                    />
+                            <div className="sm:w-[49%] mb-4 sm:mb-0">
+                                <div className="flex items-center gap-2">
+                                    <label className="font-bold">Rating : </label><br></br>
+                                    <div>
+                                        <Rating
+                                            value={rating} 
+                                            onChange={handleRating}
+                                            style={{ maxWidth: 120 }}
+                                            fillColor="gold"
+                                            allowHover={true}
+                                            isRequired={true}
+                                        />
+                                        
+                                    </div>
                                 </div>
+                                {error && (
+                                <p className="text-red-600 mt-1">{error}</p>
+                                )}
                             </div>
                         </div>
 
