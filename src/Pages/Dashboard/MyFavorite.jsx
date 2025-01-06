@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
-import useAuth from "../Hooks/useAuth";
-import FavoriteCard from "../components/Shared/FavoriteCard";
+import useAuth from "../../Hooks/useAuth";
+import FavoriteCard from "../../components/Shared/FavoriteCard";
 import FadeLoader from "react-spinners/FadeLoader";
 
 const MyFavorite = () => {

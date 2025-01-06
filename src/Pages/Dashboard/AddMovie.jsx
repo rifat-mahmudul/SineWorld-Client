@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import Swal from 'sweetalert2'
-import useAuth from "../Hooks/useAuth";
+import useAuth from "../../Hooks/useAuth";
 
 const AddMovie = () => {
 
