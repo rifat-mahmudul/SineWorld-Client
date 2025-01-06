@@ -4,14 +4,14 @@ import Featured from "../components/Home/Featured"
 
 const Home = () => {
     return (
-        <div>
+        <main>
             <Helmet>
                 <title>Home - SineWorld</title>
             </Helmet>
 
             <Banner></Banner>
             <Featured></Featured>
-        </div>
+        </main>
     )
 }
 

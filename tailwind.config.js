@@ -10,13 +10,10 @@ export default {
       fontFamily : {
         Rancho : ["Rancho", "cursive"],
         Railway: ["Raleway", 'serif'],
+      },
+      colors : {
+        'primary' : '#F4181C',
       }
     },
-  },
-  plugins: [
-    require('daisyui'),
-  ],
-  daisyui: {
-    themes: ["light", "night"],
-  },
+  }
 }

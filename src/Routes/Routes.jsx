@@ -9,6 +9,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import AddMovie from "../Pages/AddMovie";
 import UpdateMovie from "../Pages/UpdateMovie";
 import MyFavorite from "../Pages/MyFavorite";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 
 const AppRoutes = () => {
     return (
@@ -21,9 +22,12 @@ const AppRoutes = () => {
                     path={`/Details/:id`} 
                     element={<PrivateRoutes><MovieDetails></MovieDetails></PrivateRoutes>}>
                 </Route>
-                <Route path="add-movie" element={<PrivateRoutes><AddMovie></AddMovie></PrivateRoutes>}></Route>
                 <Route path="update-movie/:id" element={<PrivateRoutes><UpdateMovie></UpdateMovie></PrivateRoutes>}></Route>
                 <Route path="/my-favorite" element={<PrivateRoutes><MyFavorite></MyFavorite></PrivateRoutes>}></Route>
+            </Route>
+
+            <Route path="/dashboard" element={<Dashboard></Dashboard>}>
+                <Route path="add-movie" element={<PrivateRoutes><AddMovie></AddMovie></PrivateRoutes>}></Route>
             </Route>
 
             <Route path="*" element={<Error></Error>}></Route>

@@ -50,13 +50,13 @@ const AddMovie = () => {
     }
 
     return (
-        <section className="mt-24 mb-16">
+        <section>
 
             <Helmet>
                 <title>Add Movie - SineWorld</title>
             </Helmet>
 
-            <div className="max-w-[90%] xl:max-w-[1000px] mx-auto bg-gray-100 p-8 rounded-lg">
+            <div className="max-w-[90%] xl:max-w-[1000px] mx-auto p-8 rounded-lg">
 
                 <h1 className="text-center font-semibold text-3xl sm:text-4xl font-Rancho text-orange-600 mb-8">Add Movie</h1>
 
@@ -68,7 +68,7 @@ const AddMovie = () => {
                         <div className="sm:w-[49%] mb-4 sm:mb-0">
                             <label className="font-bold">Movie Poster</label><br />
                             <input
-                                className="border-2 border-orange-600 w-full mt-2 p-3 rounded-lg"
+                                className="border border-primary w-full mt-2 p-3 rounded-lg bg-inherit placeholder:text-gray-300 outline-0 focus:border-2"
                                 type="text"
                                 placeholder="Enter Movie Poster Link"
                                 {...register('MoviePoster', {

@@ -2,11 +2,12 @@
 import { useState } from "react"
 import { RiMenu3Fill } from "react-icons/ri"
 import { RxCross2 } from "react-icons/rx"
-import { Link, NavLink, useLocation, useNavigate } from "react-router"
+import { NavLink, useLocation, useNavigate } from "react-router"
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import Logo from "../Shared/Logo";
 
 const Nav = () => {
 
@@ -83,16 +84,10 @@ const Nav = () => {
 
         <NavLink 
         onClick={() => setOpen(false)} 
-        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
+        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`}
+        to='/dashboard' 
         >
             Dashboard
-        </NavLink>
-
-        <NavLink 
-        onClick={() => setOpen(false)} 
-        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
-        to="/add-movie">
-            Add Movie
         </NavLink>
 
         <NavLink 
@@ -138,14 +133,10 @@ const Nav = () => {
 
     return (
         <header className="w-full top-0 fixed z-10 bg-[#00000094]">
-            <div className="flex justify-between items-center py-3 max-w-[90%] xl:max-w-[1200px] mx-auto text-white px-4 backdrop-blur-lg">
+            <div className="flex justify-between items-center py-3 max-w-[90%] xl:max-w-[1200px] mx-auto text-white px-4">
+                
                 <div>
-                    <Link to="/">
-                        <h1 className="flex font-bold text-4xl font-Rancho">
-                            <span className="text-orange-600">Sine</span>
-                            <span className="text-orange-500">World</span>
-                        </h1>
-                    </Link>
+                    <Logo></Logo>
                 </div>
 
                 <div>
