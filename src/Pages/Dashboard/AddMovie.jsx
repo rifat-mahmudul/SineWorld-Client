@@ -1,10 +1,10 @@
-import { Helmet } from "react-helmet-async"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import toast from 'react-hot-toast';
+import HelmetTitle from "../../components/Shared/HelmetTitle";
 
 const AddMovie = () => {
 
@@ -35,9 +35,7 @@ const AddMovie = () => {
     return (
         <section>
 
-            <Helmet>
-                <title>Add Movie - SineWorld</title>
-            </Helmet>
+            <HelmetTitle title={'Add Movie'}></HelmetTitle>
 
             <div className="mx-auto rounded-lg">
 
