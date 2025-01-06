@@ -58,43 +58,41 @@ const Nav = () => {
     
         <NavLink 
         onClick={() => setOpen(false)} 
-        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} to='/'>HOME
+        className={({isActive}) => isActive ? `text-primary font-bold` : `font-semibold hover:text-primary transition`} 
+        to='/'>
+            HOME
         </NavLink>
 
         <NavLink 
         onClick={() => setOpen(false)} 
-        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
+        className={({isActive}) => isActive ? `text-primary font-bold` : `font-semibold hover:text-primary transition`} 
+        to={'showes'}
         >
             Showes
         </NavLink>
 
         <NavLink 
         onClick={() => setOpen(false)} 
-        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
+        className={({isActive}) => isActive ? `text-primary font-bold` : `font-semibold hover:text-primary transition`} 
+        to={'movies'} 
         >
             Movies
         </NavLink>
 
         <NavLink 
         onClick={() => setOpen(false)} 
-        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
+        className={({isActive}) => isActive ? `text-primary font-bold` : `font-semibold hover:text-primary transition`}  
+        to={'free'}
         >
             Free
         </NavLink>
 
         <NavLink 
         onClick={() => setOpen(false)} 
-        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`}
+        className={({isActive}) => isActive ? `text-primary font-bold` : `font-semibold hover:text-primary transition`} 
         to='/dashboard' 
         >
             Dashboard
-        </NavLink>
-
-        <NavLink 
-        onClick={() => setOpen(false)} 
-        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
-        to="/my-favorite">
-            My Favorites
         </NavLink>
 
         {
@@ -132,7 +130,7 @@ const Nav = () => {
     </>
 
     return (
-        <header className="w-full top-0 fixed z-10 bg-[#00000094]">
+        <header className="w-full top-0 fixed z-10 bg-[#00000094] backdrop-blur-sm">
             <div className="flex justify-between items-center py-3 max-w-[90%] xl:max-w-[1200px] mx-auto text-white px-4">
                 
                 <div>

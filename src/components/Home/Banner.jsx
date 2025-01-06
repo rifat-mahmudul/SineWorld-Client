@@ -27,12 +27,6 @@ const Banner = () => {
         >
             <SwiperSlide>
                 <div>
-                    <img className='h-[calc(70vh)] w-full' src={img1} alt="" />
-                </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-                <div>
                     <img className='h-[calc(70vh)] w-full' src={img2} alt="" />
                 </div>
             </SwiperSlide>
@@ -40,6 +34,12 @@ const Banner = () => {
             <SwiperSlide>
                 <div>
                     <img className='h-[calc(70vh)] w-full' src={img3} alt="" />
+                </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+                <div>
+                    <img className='h-[calc(70vh)] w-full' src={img1} alt="" />
                 </div>
             </SwiperSlide>
         </Swiper>
