@@ -23,23 +23,23 @@ const Banner = () => {
             disableOnInteraction: false,
         }}
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-        className="mySwiper mx-auto mb-16"
+        className="mySwiper mx-auto mb-10 h-[30%]"
         >
             <SwiperSlide>
                 <div>
-                    <img className='h-[calc(100vh)] w-full' src={img1} alt="" />
+                    <img className='h-[calc(70vh)] w-full' src={img1} alt="" />
                 </div>
             </SwiperSlide>
 
             <SwiperSlide>
                 <div>
-                    <img className='h-[calc(100vh)] w-full' src={img2} alt="" />
+                    <img className='h-[calc(70vh)] w-full' src={img2} alt="" />
                 </div>
             </SwiperSlide>
 
             <SwiperSlide>
                 <div>
-                    <img className='h-[calc(100vh)] w-full' src={img3} alt="" />
+                    <img className='h-[calc(70vh)] w-full' src={img3} alt="" />
                 </div>
             </SwiperSlide>
         </Swiper>

@@ -4,10 +4,8 @@ import Home from "../Pages/Home";
 import Login from "../Pages/Authentication/Login";
 import Register from "../Pages/Authentication/Register";
 import Error from "../Pages/Error";
-import AllMovies from "../Pages/AllMovies";
 import MovieDetails from "../Pages/MovieDetails";
 import PrivateRoutes from "./PrivateRoutes";
-import UpcomingShow from "../Pages/UpcomingShow";
 import AddMovie from "../Pages/AddMovie";
 import UpdateMovie from "../Pages/UpdateMovie";
 import MyFavorite from "../Pages/MyFavorite";
@@ -19,12 +17,10 @@ const AppRoutes = () => {
                 <Route index element={<Home />}></Route>
                 <Route path="/login" element={<Login></Login>}></Route>
                 <Route path="/register" element={<Register></Register>}></Route>
-                <Route path="/all-movies" element={<AllMovies></AllMovies>}></Route>
                 <Route 
                     path={`/Details/:id`} 
                     element={<PrivateRoutes><MovieDetails></MovieDetails></PrivateRoutes>}>
                 </Route>
-                <Route path="upcoming-show" element={<UpcomingShow></UpcomingShow>}></Route>
                 <Route path="add-movie" element={<PrivateRoutes><AddMovie></AddMovie></PrivateRoutes>}></Route>
                 <Route path="update-movie/:id" element={<PrivateRoutes><UpdateMovie></UpdateMovie></PrivateRoutes>}></Route>
                 <Route path="/my-favorite" element={<PrivateRoutes><MyFavorite></MyFavorite></PrivateRoutes>}></Route>

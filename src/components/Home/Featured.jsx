@@ -9,6 +9,7 @@ const Featured = () => {
 
     return (
         <section>
+            
             <Title title="Enjoy some amazing movies" heading="Featured Movies"></Title>
 
             <div 
