@@ -26,7 +26,7 @@ const AddMovie = () => {
         try {
             await mutateAsync(data);
             toast.success('Movie Added Successfully');
-            navigate('my-add-movie')
+            navigate('/dashboard/manage-movie')
         } catch (error) {
             console.log(`error from add movie : ${error}`)
         }
@@ -39,7 +39,7 @@ const AddMovie = () => {
                 <title>Add Movie - SineWorld</title>
             </Helmet>
 
-            <div className="max-w-[90%] xl:max-w-[1000px] mx-auto rounded-lg">
+            <div className="mx-auto rounded-lg">
 
                 <div>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -234,7 +234,7 @@ const AddMovie = () => {
                         </div>
 
                         <div>
-                            <button className="bg-gradient-to-r from-orange-500 to-orange-800 p-3 text-center text-white font-Rancho rounded-lg w-full text-2xl mt-5" type="submit">{loading ? 'Adding...' : 'Add Movie'}</button>
+                            <button className="bg-gradient-to-r bg-gray-900 p-3 text-center text-white font-Rancho rounded-lg w-full text-2xl mt-5" type="submit">{loading ? 'Adding...' : 'Add Movie'}</button>
                         </div>
 
                     </form>

@@ -22,7 +22,7 @@ const DashNav = () => {
 
                         <li>
                             <NavLink 
-                            to={'add-movie'}
+                            to={'/dashboard/add-movie'}
                             className={({isActive}) => isActive ? `text-white font-bold border-r-2 w-full block border-primary` : `hover:text-white transition`}
                             >Add Movie
                             </NavLink>
@@ -30,9 +30,9 @@ const DashNav = () => {
 
                         <li>
                             <NavLink 
-                            to={'my-add-movie'}
+                            to={'/dashboard/manage-movie'}
                             className={({isActive}) => isActive ? `text-white font-bold border-r-2 w-full block border-primary` : `hover:text-white transition`}
-                            >My Added Movie
+                            >Manage Movie
                             </NavLink>
                         </li>
 

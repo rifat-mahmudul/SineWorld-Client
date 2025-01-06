@@ -9,7 +9,7 @@ const Dashboard = () => {
                     <DashNav></DashNav>
                 </div>
 
-                <div className="w-[85%] py-10">
+                <div  className="lg:py-10 mt-5 w-[90%] lg:w-[80%] mx-auto">
                     <Outlet></Outlet>
                 </div>
             </div>
