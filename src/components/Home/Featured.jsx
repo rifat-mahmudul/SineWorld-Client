@@ -1,11 +1,20 @@
 import { Link } from "react-router";
-import useMovies from "../../Hooks/useMovies"
 import Card from "../Shared/Card";
 import Title from "../Shared/Title"
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Featured = () => {
 
-    const [movies] = useMovies();
+    const axiosPublic = useAxiosPublic();
+
+    const {data : movies = []} = useQuery({
+        queryKey : ['movies'],
+        queryFn : async () => {
+            const {data} = await axiosPublic('/movies');
+            return data;
+        }
+    })
 
     return (
         <section>

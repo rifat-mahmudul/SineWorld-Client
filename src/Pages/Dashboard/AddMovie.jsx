@@ -1,39 +1,35 @@
 import { Helmet } from "react-helmet-async"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import Swal from 'sweetalert2'
 import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useMutation } from "@tanstack/react-query";
+import toast from 'react-hot-toast';
 
 const AddMovie = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const {user, loading} = useAuth();
+    const axiosSecure = useAxiosSecure();
 
+    const {mutateAsync} = useMutation({
+        mutationFn : async movieData => {
+            const {data} = await axiosSecure.post('/movies', movieData);
+            return data;
+        }
+    })
 
-
-    const onSubmit = data => {
+    const onSubmit = async data => {
         data.email = user?.email;
         
-        fetch('https://assignment-10-server-delta-sand.vercel.app/movies', {
-            method : 'POST',
-            headers : {
-                "content-type" : "application/json"
-            },
-            body : JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.acknowledged){
-                Swal.fire({
-                    icon: "success",
-                    title: "Movie Saved Successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate('/all-movies')
-            }
-        })
+        try {
+            await mutateAsync(data);
+            toast.success('Movie Added Successfully');
+            navigate('my-add-movie')
+        } catch (error) {
+            console.log(`error from add movie : ${error}`)
+        }
     }
 
     return (
