@@ -10,7 +10,7 @@ const ManageMovie = () => {
     const {user} = useAuth();
 
     const {data : manageMovies = [], refetch} = useQuery({
-        queryKey : ['manage-movie'],
+        queryKey : ['manage-movie', user?.email],
         queryFn  : async () => {
             const {data} = await axiosSecure(`/manage-movies/${user?.email}`)
             return data;
