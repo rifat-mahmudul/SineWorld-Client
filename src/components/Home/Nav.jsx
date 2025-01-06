@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { RiMenu3Fill } from "react-icons/ri"
 import { RxCross2 } from "react-icons/rx"
 import { Link, NavLink, useLocation, useNavigate } from "react-router"
@@ -16,22 +16,6 @@ const Nav = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state || '/';
-
-    const [theme, setTheme] = useState('light');
-
-    useEffect(()=>{
-        localStorage.setItem('theme', theme);
-        const localTheme = localStorage.getItem('theme');
-        document.querySelector('html').setAttribute('data-theme', localTheme);
-    },[theme]);
-
-    const handleTheme = e =>{
-        if(e.target.checked){
-            setTheme('night');
-        }else{
-            setTheme('light');
-        }
-    }
 
 
     const handleLogOut = () => {
@@ -79,8 +63,29 @@ const Nav = () => {
         <NavLink 
         onClick={() => setOpen(false)} 
         className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
-        to="/all-movies">
-            All Movies
+        >
+            Showes
+        </NavLink>
+
+        <NavLink 
+        onClick={() => setOpen(false)} 
+        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
+        >
+            Movies
+        </NavLink>
+
+        <NavLink 
+        onClick={() => setOpen(false)} 
+        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
+        >
+            Free
+        </NavLink>
+
+        <NavLink 
+        onClick={() => setOpen(false)} 
+        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
+        >
+            Dashboard
         </NavLink>
 
         <NavLink 
@@ -95,13 +100,6 @@ const Nav = () => {
         className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
         to="/my-favorite">
             My Favorites
-        </NavLink>
-
-        <NavLink 
-        onClick={() => setOpen(false)} 
-        className={({isActive}) => isActive ? `text-orange-500 font-bold` : `font-semibold hover:text-orange-500 transition`} 
-        to="/upcoming-show">
-            Upcoming Show
         </NavLink>
 
         {
@@ -135,41 +133,6 @@ const Nav = () => {
                 </button>
             </NavLink>
         }
-
-        <label className="grid cursor-pointer place-items-center">
-            <input
-                onChange={handleTheme}
-                type="checkbox"
-                className="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1" />
-            <svg
-                className="stroke-base-100 fill-base-100 col-start-1 row-start-1"
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round">
-                <circle cx="12" cy="12" r="5" />
-                <path
-                d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-            </svg>
-            <svg
-                className="stroke-base-100 fill-base-100 col-start-2 row-start-1"
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        </label>
     
     </>
 
