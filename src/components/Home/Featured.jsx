@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import Card from "../Shared/Card";
 import Title from "../Shared/Title"
 import { useQuery } from "@tanstack/react-query";
@@ -17,7 +16,7 @@ const Featured = () => {
     })
 
     return (
-        <section>
+        <section className="pb-24">
             
             <Title title="Enjoy some amazing movies" heading="Featured Movies"></Title>
 
@@ -27,15 +26,7 @@ const Featured = () => {
                     movies.slice(0,6).map(movie => <Card key={movie._id} movie={movie}></Card>)
                 }
             </div>
-            
-            <div className="text-center mt-10">
-                <Link to='/all-movies'>
-                    <button 
-                    className="py-3 px-5 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 mb-16">
-                        See all movies
-                    </button>
-                </Link>
-            </div>
+        
         </section>
     )
 }
