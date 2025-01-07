@@ -38,7 +38,7 @@ const DashNav = () => {
 
                         <li>
                             <NavLink 
-                            to={'my-favorites'}
+                            to={'/dashboard/my-favorite'}
                             className={({isActive}) => isActive ? `text-white font-bold border-r-2 w-full block border-primary` : `hover:text-white transition`}
                             >My Favourite
                             </NavLink>

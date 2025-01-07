@@ -6,10 +6,10 @@ import Register from "../Pages/Authentication/Register";
 import Error from "../Pages/Error";
 import MovieDetails from "../Pages/MovieDetails";
 import PrivateRoutes from "./PrivateRoutes";
-import MyFavorite from "../Pages/Dashboard/MyFavorite";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddMovie from "../Pages/Dashboard/AddMovie";
 import ManageMovie from "../Pages/Dashboard/ManageMovie";
+import MyFavorite from "../Pages/Dashboard/MyFavorite";
 
 const AppRoutes = () => {
     return (
@@ -22,12 +22,12 @@ const AppRoutes = () => {
                     path={`/Details/:id`} 
                     element={<PrivateRoutes><MovieDetails></MovieDetails></PrivateRoutes>}>
                 </Route>
-                <Route path="/my-favorite" element={<PrivateRoutes><MyFavorite></MyFavorite></PrivateRoutes>}></Route>
             </Route>
 
             <Route path="/dashboard" element={<Dashboard></Dashboard>}>
                 <Route path="/dashboard/add-movie" element={<PrivateRoutes><AddMovie></AddMovie></PrivateRoutes>}></Route>
                 <Route path="/dashboard/manage-movie" element={<PrivateRoutes><ManageMovie></ManageMovie></PrivateRoutes>}></Route>
+                <Route path="/dashboard/my-favorite" element={<PrivateRoutes><MyFavorite></MyFavorite></PrivateRoutes>}></Route>
             </Route>
 
             <Route path="*" element={<Error></Error>}></Route>

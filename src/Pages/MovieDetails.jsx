@@ -1,14 +1,13 @@
-import { useNavigate, useParams } from "react-router"
+import { useParams } from "react-router"
 import { GrFavorite } from "react-icons/gr";
-import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
 import HelmetTitle from "../components/Shared/HelmetTitle";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const MovieDetails = () => {
 
-    const navigate = useNavigate();
     const {user} = useAuth();
     const axiosPublic = useAxiosPublic();
 
@@ -23,8 +22,14 @@ const MovieDetails = () => {
     const {id} = useParams();
     const details = movies.find(d => d._id == id);
 
+    const {mutateAsync} = useMutation({
+        mutationFn : async movieData => {
+            const {data} = axiosPublic.post('/favorite', movieData);
+            return data;
+        }
+    })
 
-    const handleFavorite = () => {
+    const handleFavorite = async () => {
 
         const data = {
             MoviePoster : details?.MoviePoster,
@@ -32,30 +37,16 @@ const MovieDetails = () => {
             Genre : details?.Genre,
             Duration : details?.Duration,
             ReleaseYear : details?.ReleaseYear,
-            rating : details?.rating,
-            Summary : details?.Summary,
+            Director : details?.Director,
             email : user?.email,
         }
 
-        fetch('https://assignment-10-server-delta-sand.vercel.app/favorite', {
-            method : 'POST',
-            headers : {
-                "content-type" : "application/json"
-            },
-            body : JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.acknowledged){
-                Swal.fire({
-                    icon: "success",
-                    title: "Successfully Added My Favorite",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate('/my-favorite')
-            }
-        })
+        try {
+            await mutateAsync(data);
+            toast.success('Added to Favourites')
+        } catch (error) {
+            console.log(`error from movie Details page : ${error}`)
+        }
     }
 
     return (
@@ -93,7 +84,7 @@ const MovieDetails = () => {
                 <div className="mt-8 flex items-center gap-5">
                     <button className="py-3 px-5 bg-primary rounded-lg font-bold text-lg">Subscribe to Watch</button>
 
-                    <button className="h-12 w-12 border border-gray-600 rounded-md hover:border-gray-400 flex items-center justify-center transition">
+                    <button onClick={handleFavorite} className="h-12 w-12 border border-gray-600 rounded-md hover:border-gray-400 flex items-center justify-center transition">
                         <GrFavorite className="text-xl"></GrFavorite>
                     </button>
                 </div>
