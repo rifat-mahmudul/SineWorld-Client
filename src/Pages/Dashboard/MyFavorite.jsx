@@ -29,7 +29,7 @@ const MyFavorite = () => {
                         favoriteMovies.length === 0 
                             ?
                         <div className="flex items-center justify-center">
-                            <h1 className="text-3xl text-center font-bold text-red-500">NO Favorite Added</h1>
+                            <h1 className="text-3xl text-center font-bold text-red-500">You have no favorite</h1>
                         </div>
                             :
                         <div>
