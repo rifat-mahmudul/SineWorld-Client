@@ -63,37 +63,38 @@ const Nav = () => {
             HOME
         </NavLink>
 
-        <NavLink 
+        {/* <NavLink 
         onClick={() => setOpen(false)} 
         className={({isActive}) => isActive ? `text-primary font-bold` : `font-semibold hover:text-primary transition`} 
         to={'showes'}
         >
             Showes
-        </NavLink>
+        </NavLink> */}
 
         <NavLink 
         onClick={() => setOpen(false)} 
         className={({isActive}) => isActive ? `text-primary font-bold` : `font-semibold hover:text-primary transition`} 
-        to={'movies'} 
+        to={'all-movies'} 
         >
-            Movies
+            All Movies
         </NavLink>
 
-        <NavLink 
+        {/* <NavLink 
         onClick={() => setOpen(false)} 
         className={({isActive}) => isActive ? `text-primary font-bold` : `font-semibold hover:text-primary transition`}  
         to={'free'}
         >
             Free
-        </NavLink>
+        </NavLink> */}
 
+        {user && 
         <NavLink 
         onClick={() => setOpen(false)} 
         className={({isActive}) => isActive ? `text-primary font-bold` : `font-semibold hover:text-primary transition`} 
         to='/dashboard' 
         >
             Dashboard
-        </NavLink>
+        </NavLink>}
 
         {
             user ? 

@@ -10,6 +10,7 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import AddMovie from "../Pages/Dashboard/AddMovie";
 import ManageMovie from "../Pages/Dashboard/ManageMovie";
 import MyFavorite from "../Pages/Dashboard/MyFavorite";
+import AllMovies from "../Pages/AllMovies";
 
 const AppRoutes = () => {
     return (
@@ -20,8 +21,9 @@ const AppRoutes = () => {
                 <Route path="/register" element={<Register></Register>}></Route>
                 <Route 
                     path={`/Details/:id`} 
-                    element={<PrivateRoutes><MovieDetails></MovieDetails></PrivateRoutes>}>
+                    element={<MovieDetails></MovieDetails>}>
                 </Route>
+                <Route path={'all-movies'} element={<AllMovies></AllMovies>} ></Route>
             </Route>
 
             <Route path="/dashboard" element={<Dashboard></Dashboard>}>

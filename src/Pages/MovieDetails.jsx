@@ -1,4 +1,4 @@
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { GrFavorite } from "react-icons/gr";
 import useAuth from "../Hooks/useAuth";
 import HelmetTitle from "../components/Shared/HelmetTitle";
@@ -10,6 +10,7 @@ const MovieDetails = () => {
 
     const {user} = useAuth();
     const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
 
     const {data : movies = []} = useQuery({
         queryKey : ['movies'],
@@ -30,6 +31,10 @@ const MovieDetails = () => {
     })
 
     const handleFavorite = async () => {
+
+        if(!user) {
+            return navigate('/login');
+        }
 
         const data = {
             MoviePoster : details?.MoviePoster,
