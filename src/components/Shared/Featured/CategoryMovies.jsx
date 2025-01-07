@@ -7,12 +7,12 @@ import { Navigation, Keyboard, FreeMode } from 'swiper/modules';
 import { Link } from "react-router";
 import Title from '../Title';
 
-const RecentAdded = ({ recentAdded }) => {
+const CategoryMovies = ({ movies, heading }) => {
     return (
         <div className="mt-10 max-w-[90%] xl:max-w-[1200px] mx-auto">
 
             <div className="mb-5">
-                <Title title="Enjoy some amazing movies" heading="Recently Added"></Title>
+                <Title heading={heading}></Title>
             </div>
 
             <Swiper
@@ -44,7 +44,7 @@ const RecentAdded = ({ recentAdded }) => {
                 }}
             >
                 {
-                    recentAdded.map(item => (
+                    movies.map(item => (
                         <SwiperSlide key={item.key} className="h-[250px] w-[180px]">
                             <Link to={`/Details/${item?._id}`}>
                                 <div className="h-[260px] w-[180px] rounded-lg hover:scale-105 transition">
@@ -62,4 +62,4 @@ const RecentAdded = ({ recentAdded }) => {
     );
 };
 
-export default RecentAdded;
+export default CategoryMovies;

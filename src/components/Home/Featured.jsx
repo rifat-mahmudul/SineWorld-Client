@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import RecentAdded from "../Shared/Featured/RecentAdded";
+import CategoryMovies from "../Shared/Featured/CategoryMovies";
 
 const Featured = () => {
 
@@ -14,12 +14,14 @@ const Featured = () => {
         }
     })
 
-    const recentAdded = movies.filter(movie => movie.category === 'recentlyAdded')
+    const recentAdded = movies.filter(movie => movie.category === 'recentlyAdded');
+    const nextWatch = movies.filter(movie => movie.category === 'nextWatch');
 
     return (
         <section className="pb-24">
             
-            <RecentAdded recentAdded={recentAdded}></RecentAdded>
+            <CategoryMovies heading={'Recently Added'} movies={recentAdded}></CategoryMovies>
+            <CategoryMovies heading={'Your Next Watch'} movies={nextWatch}></CategoryMovies>
         
         </section>
     )
