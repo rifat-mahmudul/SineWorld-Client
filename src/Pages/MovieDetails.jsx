@@ -1,51 +1,27 @@
-import { Link, useNavigate, useParams } from "react-router"
-import { Rating } from "@smastrom/react-rating";
-import { MdDeleteForever } from "react-icons/md";
+import { useNavigate, useParams } from "react-router"
 import { GrFavorite } from "react-icons/gr";
-import { FaPencil } from "react-icons/fa6";
-import { Helmet } from "react-helmet-async";
-import useMovies from "../Hooks/useMovies";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
+import HelmetTitle from "../components/Shared/HelmetTitle";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const MovieDetails = () => {
 
-    const [movies] = useMovies();
     const navigate = useNavigate();
     const {user} = useAuth();
+    const axiosPublic = useAxiosPublic();
+
+    const {data : movies = []} = useQuery({
+        queryKey : ['movies'],
+        queryFn : async () => {
+            const {data} = await axiosPublic('/movies');
+            return data;
+        }
+    })
 
     const {id} = useParams();
     const details = movies.find(d => d._id == id);
-
-    const handleDelete = () => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`https://assignment-10-server-delta-sand.vercel.app/movies/${details?._id}`, {
-                    method: 'DELETE'
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your movie has been deleted.",
-                            icon: "success"
-                        });
-                        navigate('/all-movies')
-                    }
-                })
-                .catch(error => console.error("Error deleting movie:", error));
-            }
-        });
-    }
 
 
     const handleFavorite = () => {
@@ -83,52 +59,46 @@ const MovieDetails = () => {
     }
 
     return (
-        <section className="max-w-[90%] xl:max-w-[850px] mx-auto bg-gray-200 p-5 rounded-xl mt-24 mb-16">
+        <section 
+        style={{
+            backgroundImage: `url(${details?.MoviePoster}), linear-gradient(to right, rgba(0, 0, 0, 10), rgba(0, 0, 0, 0.2))`,
+            backgroundSize: "cover",
+            backgroundPosition: "center", 
+            backgroundRepeat: "no-repeat",
+            backgroundBlendMode : 'overlay'
+        }}
+        className="mb-16 h-[100vh] text-white"
+        >
 
-            <Helmet>
-                <title>Details - SineWorld</title>
-            </Helmet>
+            <HelmetTitle title={'Details'}></HelmetTitle>
 
-            <div className="col-span-4">
-                <img className="h-[300px] w-full rounded-lg" src={details?.MoviePoster} alt="" />
-                <h1 className="font-bold text-2xl mt-3 mb-3">{details?.MovieTitle}</h1>
-                <p className="sm:max-w-xl">{details?.Summary}</p>
-                
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <p className="mt-3">
-                        <span className="font-bold">Duration</span> : {details?.Duration}
-                    </p>
-                    <p className="mt-3">
-                        <span className="font-bold">Release Year</span> : {details?.ReleaseYear}
-                    </p>
-                    <p className="mt-3">
-                        <span className="font-bold">Genre</span> : {details?.Genre}
-                    </p>
-                    <h3 className='flex gap-3 items-center mt-3'>
-                            <span className="font-semibold">Rating : </span>
-                            <Rating style={{ maxWidth: 120 }} value={details?.rating} readOnly/>
-                    </h3>
+            <div className="max-w-[90%] xl:max-w-[1200px] mx-auto rounded-xl pt-16 sm:pt-24">
+                <h1 className="text-6xl font-bold">{details?.MovieTitle}</h1>
+                <div>
+                    <ul className="flex items-center gap-8 list-disc">
+                        <p>{details?.Duration} min</p>
+                        <li>{details?.ReleaseYear}</li>
+                        <li>{details?.Genre}</li>
+                    </ul>
                 </div>
 
-                <div className="mt-5 flex flex-col sm:flex-row gap-5">
-                    <button onClick={handleDelete} className="py-3 px-5 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 flex gap-1 items-center">
-                        <MdDeleteForever size={24} /> 
-                        <p>Delete movie</p>
-                    </button>
+                <div className="my-5 sm:max-w-xl max-w-[90%]">
+                    <p>{details?.Summary}</p>
+                </div>
 
-                    <button onClick={handleFavorite} className="py-3 px-5 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 flex gap-1 items-center">
-                        <GrFavorite size={24} /> 
-                        <p>Add to Favorite</p>
-                    </button>
+                <div>
+                    <h1><span className="text-gray-300">Director :</span> {details?.Director}</h1>
+                </div>
 
-                    <Link to={`/update-movie/${details?._id}`}>
-                        <button className="py-3 px-5 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 font-bold text-white hover:from-orange-500 hover:to-orange-600 flex gap-1 items-center">
-                            <FaPencil size={24} />
-                            <p>Update Movie</p>
-                        </button>
-                    </Link>
+                <div className="mt-8 flex items-center gap-5">
+                    <button className="py-3 px-5 bg-primary rounded-lg font-bold text-lg">Subscribe to Watch</button>
+
+                    <button className="h-12 w-12 border border-gray-600 rounded-md hover:border-gray-400 flex items-center justify-center transition">
+                        <GrFavorite className="text-xl"></GrFavorite>
+                    </button>
                 </div>
             </div>
+            
         </section>
     )
 }
