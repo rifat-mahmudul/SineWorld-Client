@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import Root from "../Layout/Root";
 import Home from "../Pages/Home";
 import Login from "../Pages/Authentication/Login";
@@ -27,6 +27,10 @@ const AppRoutes = () => {
             </Route>
 
             <Route path="/dashboard" element={<Dashboard></Dashboard>}>
+                <Route
+                    index
+                    element={<Navigate to="add-movie" replace />}
+                />
                 <Route path="/dashboard/add-movie" element={<PrivateRoutes><AddMovie></AddMovie></PrivateRoutes>}></Route>
                 <Route path="/dashboard/manage-movie" element={<PrivateRoutes><ManageMovie></ManageMovie></PrivateRoutes>}></Route>
                 <Route path="/dashboard/my-favorite" element={<PrivateRoutes><MyFavorite></MyFavorite></PrivateRoutes>}></Route>

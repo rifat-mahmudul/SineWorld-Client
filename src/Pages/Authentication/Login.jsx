@@ -94,7 +94,7 @@ const Login = () => {
                 <img className="h-[300px] lg:w-[400px] rounded-lg" src={loginImage} alt="" />
             </div>
 
-            <div className="lg:w-1/3 bg-gray-100 shadow-md rounded p-5">
+            <div className="lg:w-1/3 bg-gray-700 shadow-md rounded p-5">
                 <form className="" onSubmit={handleLogIn}>
                     <h1 className="font-bold text-3xl mb-4 text-center">Log in</h1>
                     <div className="mb-4">

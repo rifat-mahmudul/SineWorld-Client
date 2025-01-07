@@ -232,7 +232,7 @@ const AddMovie = () => {
                         </div>
 
                         <div>
-                            <button className="bg-gradient-to-r bg-gray-900 p-3 text-center text-white font-Rancho rounded-lg w-full text-2xl mt-5" type="submit">{loading ? 'Adding...' : 'Add Movie'}</button>
+                            <button className="bg-gradient-to-r bg-gray-900 p-3 text-center text-white font-bold rounded-lg w-full text-2xl mt-5" type="submit">{loading ? 'Adding...' : 'Add Movie'}</button>
                         </div>
 
                     </form>

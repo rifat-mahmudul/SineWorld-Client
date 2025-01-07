@@ -95,7 +95,7 @@ const Register = () => {
                 <img className="h-[300px] lg:w-[500px] rounded-lg" src={loginImage} alt="" />
             </div>
 
-            <div className="sm:w-[40%] bg-gray-100 shadow-md rounded p-5">
+            <div className="sm:w-[40%] bg-gray-700 shadow-md rounded p-5">
                 <form onSubmit={handleRegister}>
                     <h1 className="font-bold text-3xl mb-4 text-center">Registration</h1>
                     <div className="mb-4">

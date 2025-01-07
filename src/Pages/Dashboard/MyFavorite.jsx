@@ -42,6 +42,7 @@ const MyFavorite = () => {
                                         <th>Duration</th>
                                         <th>ReleaseYear</th>
                                         <th>Director</th>
+                                        <th>Subscribe Now</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>

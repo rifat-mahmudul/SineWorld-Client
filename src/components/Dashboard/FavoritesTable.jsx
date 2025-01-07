@@ -52,6 +52,9 @@ const FavoritesTable = ({item, refetch}) => {
                 <td>{Duration}</td>
                 <td>{ReleaseYear}</td>
                 <td>{Director}</td>
+                <th>
+                    <button className="py-2 px-5 bg-primary font-bold text-lg rounded-lg">Subscribe</button>
+                </th>
                 <td>
                     <button onClick={handleDelete} className="bg-[#ff00003f] p-2 rounded-md">
                         <MdDeleteForever className="text-2xl text-red-500"></MdDeleteForever>

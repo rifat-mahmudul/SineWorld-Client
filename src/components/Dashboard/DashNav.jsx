@@ -12,12 +12,12 @@ const DashNav = () => {
                 <nav>
                     <ul className="flex flex-col gap-3 text-xl font-semibold text-gray-300">
                         <li>
-                            <NavLink
+                            {/* <NavLink
                             to={'dashNav'}
                             className={({isActive}) => isActive ? `text-white font-bold border-r-2 w-full block border-primary` : `hover:text-white transition`}
                             >
                             Home
-                            </NavLink>
+                            </NavLink> */}
                         </li>
 
                         <li>
