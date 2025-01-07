@@ -17,6 +17,7 @@ const Featured = () => {
     const recentAdded = movies.filter(movie => movie.category === 'recentlyAdded');
     const nextWatch = movies.filter(movie => movie.category === 'nextWatch');
     const heartbreakTales = movies.filter(movie => movie.category === 'heartbreakTales');
+    const upcoming = movies.filter(movie => movie.category === 'upcoming');
 
     return (
         <section className="pb-24">
@@ -24,6 +25,7 @@ const Featured = () => {
             <CategoryMovies heading={'Recently Added'} movies={recentAdded}></CategoryMovies>
             <CategoryMovies heading={'Your Next Watch'} movies={nextWatch}></CategoryMovies>
             <CategoryMovies heading={'Heartbreak Tales'} movies={heartbreakTales}></CategoryMovies>
+            <CategoryMovies heading={'New and Upcoming'} movies={upcoming}></CategoryMovies>
         
         </section>
     )
