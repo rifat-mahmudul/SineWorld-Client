@@ -1,5 +1,5 @@
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
-import { Link } from "react-router";
+import Logo from "./Logo";
 
 const Footer = () => {
     return (
@@ -9,12 +9,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
                 {/* Website Info */}
                 <div>
-                    <Link to="/">
-                        <h1 className="flex font-bold justify-center sm:justify-start text-4xl font-Rancho">
-                            <span className="text-orange-600">Sine</span>
-                            <span className="text-orange-500">World</span>
-                        </h1>
-                    </Link>
+                    <Logo></Logo>
                     <p className="mt-4 text-sm">
                     Your ultimate destination for exploring movies, TV shows, reviews, and cinematic updates. Immerse yourself in the world of entertainment.
                     </p>
