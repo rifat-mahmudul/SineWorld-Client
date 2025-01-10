@@ -27,41 +27,42 @@ const ManageMovie = () => {
                 <div>
 
                     {
-                        manageMovies.length === 0 
+                        manageMovies.length > 0 
                             ?
-                        <div className="flex items-center justify-center">
-                            <h1 className="text-3xl text-center font-bold text-red-500">NO Movie Added</h1>
-                        </div>
-                            :
-                        <div>
-                            <table className="w-full">
-                                <thead >
-                                    <tr className="h-16 bg-[#a8a8a741] text-white text-lg text-center">
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Genre</th>
-                                        <th>Duration</th>
-                                        <th>ReleaseYear</th>
-                                        <th>Director</th>
-                                        <th>Update</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                </thead>
+                                <div>
+                                    <table className="w-full">
+                                        <thead >
+                                            <tr className="h-16 bg-[#a8a8a741] text-white text-lg text-center">
+                                                <th>Image</th>
+                                                <th>Name</th>
+                                                <th>Genre</th>
+                                                <th>Duration</th>
+                                                <th>ReleaseYear</th>
+                                                <th>Director</th>
+                                                <th>Update</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
 
-                                <tbody>
-                                    {
-                                        manageMovies.map(item => (
-                                            <ManageTable
-                                            key={item._id}
-                                            item={item}
-                                            refetch={refetch}
-                                            >
-                                            </ManageTable>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                                        <tbody>
+                                            {
+                                                manageMovies.map(item => (
+                                                    <ManageTable
+                                                    key={item._id}
+                                                    item={item}
+                                                    refetch={refetch}
+                                                    >
+                                                    </ManageTable>
+                                                ))
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            :
+                                <div className="flex items-center justify-center">
+                                    <h1 className="text-3xl text-center font-bold text-red-500">NO Movie Added</h1>
+                                </div>
+                        
                     }
 
                 </div>
