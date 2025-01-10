@@ -77,7 +77,7 @@ const Nav = () => {
         className={({isActive}) => isActive ? `text-primary font-bold` : `font-semibold hover:text-primary transition`} 
         to='/dashboard' 
         >
-            Dashboard
+            My Dashboard
         </NavLink>}
 
         {
